@@ -10,6 +10,7 @@ namespace Sudoku6
     {
         static void Main(string[] args)
         {
+
         }
     }
 }
