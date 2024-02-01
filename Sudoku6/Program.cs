@@ -46,5 +46,58 @@ namespace Sudoku6
             {0, 0, 0, 0, 8, 0, 0, 7, 9}
             };
         }
+        static bool IsSudokuSolved()
+        {
+            // Verifica se il Sudoku è risolto
+            for (int i = 0; i < 9; i++)
+            {
+                for (int j = 0; j < 9; j++)
+                {
+                    if (board[i, j] == 0)
+                        return false;
+                }
+            }
+            return true;
+        }
+        static bool IsBoxSafe(int startRow, int startCol, int num)
+        {
+            // Verifica se il numero è già presente nella sottogriglia 3x3
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    if (board[startRow + i, startCol + j] == num)
+                        return false;
+                }
+            }
+            return true;
+        }
+        static bool IsColumnSafe(int col, int num)
+        {
+            // Verifica se il numero è già presente nella colonna
+            for (int i = 0; i < 9; i++)
+            {
+                if (board[i, col] == num)
+                    return false;
+            }
+            return true;
+
+        }
+        static bool IsRowSafe(int row, int num)
+        {
+            // Verifica se il numero è già presente nella riga
+            for (int i = 0; i < 9; i++)
+            {
+                if (board[row, i] == num)
+                    return false;
+            }
+            return true;
+        }
+        static bool IsValidMove(int row, int col, int num)
+        {
+            // Verifica se il numero può essere inserito nella posizione desiderata
+            return IsRowSafe(row, num) && IsColumnSafe(col, num) && IsBoxSafe(row - row % 3, col - col % 3, num);
+        }
+
     }
 }
