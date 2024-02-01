@@ -16,7 +16,9 @@ namespace Sudoku6
             PrintBoard();
             while (!IsSudokuSolved())
             {
-                int row, col, num;
+                int row;
+                int col;
+                int num=0;
                 do
                 {
                     Console.Write("Inserisci riga (1-9): ");
